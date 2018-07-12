@@ -1,0 +1,15 @@
+把ckpt文件和meta文件转化成pb文件，pb文件中同时存储着网络结构和参数值
+
+1.pb.py
+	把网络结构代码的训练部分去掉，只留下inference部分，然后saver =tf.train.Saver()；
+	restore旧的ckpt文件，把模型参数给加载进去，这样一个完整的inference网络就出来了；
+	saver.save()，把完整的inference网络保存成新的ckpt
+2.freeze.py
+	把ckpt转化成pb文件
+	from tensorflow.python.framework import graph_util
+	graph_util.convert_variables_to_constants()，输出节点名称参考上一步代码打印出来的结果（理论上应该可以把inference网络里面任意节点作为输出	节点）
+3.test_pbnet.py
+	加载pb模型，测试
+	
+get_op.py 
+	print图中节点，流程跟转化pb文件类似

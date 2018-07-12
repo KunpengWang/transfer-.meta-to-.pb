@@ -1,0 +1,18 @@
+PNet
+输入input:0 
+[None,None,None,3]
+输出Squeeze:0, Squeeze_1:0, Squeeze_2:0   
+分别对应：是否有人脸，one-hot编码，[1,0]表示有人脸，[0,1]表示没有人脸；人脸的bounding box信息（左上角坐标+长和宽）；人脸五个点坐标（双眼+鼻子+两个嘴角）
+单独使用但是输出结果很粗略，因此会有很多输出
+
+RNet  
+输入input:0  
+[None,24,24,3]
+输出cls_fc/Softmax:0, bbox_fc/BiasAdd:0, landmark_fc/BiasAdd:0  分别对应同上
+单独使用不准确
+
+ONet
+输入input:0
+[None,48,48,3]
+输出cls_fc/Softmax:0, bbox_fc/BiasAdd:0, landmark_fc/BiasAdd:0  分别对应同上
+单独使用不准确
